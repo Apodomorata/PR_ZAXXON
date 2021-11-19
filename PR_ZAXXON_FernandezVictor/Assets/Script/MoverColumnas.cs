@@ -12,12 +12,13 @@ public class MoverColumnas : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speed = 100f;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        speed = GameObject.Find("Nave").GetComponent<Movimiento2>().speed;
         
         transform.Translate(Vector3.back * Time.deltaTime * speed);
 
