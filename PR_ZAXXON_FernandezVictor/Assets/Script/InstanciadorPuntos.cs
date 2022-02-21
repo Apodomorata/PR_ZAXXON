@@ -12,20 +12,26 @@ public class InstanciadorPuntos : MonoBehaviour
     [SerializeField] GameObject Puntos;
     [SerializeField] Transform instantiatePos;
 
+    float distancia = 20f;
+    Movimiento2 movimiento2;
+    float speed;
+
     // Start is called before the first frame update
     void Start()
     {
-        intervalo = 0.4f;
-
-        
+        //intervalo = 0.4f;
 
         StartCoroutine("CrearPuntos");
+
+        movimiento2 = GameObject.Find("Nave").GetComponent<Movimiento2>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-       
+        speed = movimiento2.speed;
+        intervalo = distancia / speed;
     }
 
     IEnumerator CrearPuntos()

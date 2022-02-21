@@ -10,18 +10,23 @@ public class Movimiento2 : MonoBehaviour
     [SerializeField] GameObject nave;
     [SerializeField] float desplSpeed;
     public int Vida;
+
+    [SerializeField] Transform navePos;
    
     public float speed; // Velocidad de los obstaculos
 
     public int score;
     public Text Score;
 
+    //Explosion
+    [SerializeField] GameObject Explosion;
+
     // Start is called before the first frame update
     void Start()
     {
         desplSpeed = 60f;
         Vida = 1;
-        speed = 100f;
+        speed = 75f;
 
         Score.text = "Score " + score;
 
@@ -68,14 +73,20 @@ public class Movimiento2 : MonoBehaviour
 
         if(score == 5)
         {
-            speed = 140;
+            speed = 120f;
+            desplSpeed = 65f;
         }
 
         if (score == 10)
         {
-            speed = 180;
+            speed = 170f;
+            desplSpeed = 70f;
         }
-        //&& score == 5 && score == 10 && score == 15
+        if (score == 20)
+        {
+            speed = 200f;
+            desplSpeed = 80f;
+        }
 
 
 
@@ -92,6 +103,10 @@ public class Movimiento2 : MonoBehaviour
             {
                 nave.SetActive(false);
                 speed = 0f;
+                Instantiate(Explosion, navePos.position, Quaternion.identity);
+
+                desplSpeed = 0f;
+
                 StartCoroutine("Morir");
             }
 
@@ -114,6 +129,8 @@ public class Movimiento2 : MonoBehaviour
     {
         
         yield return new WaitForSeconds(1.5f);
+
+
         SceneManager.LoadScene(2);
     }
 
